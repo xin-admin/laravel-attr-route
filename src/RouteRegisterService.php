@@ -14,7 +14,7 @@ use Xin\AnnoRoute\Attribute\PatchRoute;
 use Xin\AnnoRoute\Attribute\PostRoute;
 use Xin\AnnoRoute\Attribute\PutRoute;
 use Xin\AnnoRoute\Attribute\RequestAttribute;
-use Xin\AnnoRoute\Middlewares\AuthGuardMiddleware;
+use Xin\AnnoRoute\Middlewares\CheckModelMiddleware;
 
 class RouteRegisterService
 {
@@ -146,9 +146,9 @@ class RouteRegisterService
 
         $authMiddleware = ['auth:sanctum'];
 
-        $guardMiddleware = AuthGuardMiddleware::class;
-        if (! empty($authGuard)) {
-            $authMiddleware[] = $guardMiddleware . ':' . $authGuard;
+        $guardMiddleware = CheckModelMiddleware::class;
+        if (! empty($authModel)) {
+            $authMiddleware[] = $guardMiddleware . ':' . $authModel;
         } else {
             $authMiddleware[] = $guardMiddleware;
         }

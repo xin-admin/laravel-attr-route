@@ -61,25 +61,4 @@ abstract class BaseAttribute
      * @var array
      */
     public array $where = [];
-
-    /**
-     * 成功响应
-     * @param array|string $msg 提示信息，传入数组时作为 data 返回
-     * @return JsonResponse
-     */
-    protected static function success(array|string $msg = ''): JsonResponse
-    {
-        if (is_array($msg)) {
-            $data = $msg;
-            $msg = '';
-        } else {
-            $data = [];
-        }
-        return response()->json([
-            'success' => true,
-            'data' => $data,
-            'showType' => config('anno-route.response.success_show_type', 1),
-            'msg' => $msg,
-        ]);
-    }
 }

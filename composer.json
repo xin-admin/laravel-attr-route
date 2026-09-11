@@ -1,6 +1,6 @@
 {
-    "name": "xinadmin/attr-route",
-    "description": "使用 PHP 8 注解（Attributes）注册 Laravel 路由的轻量级组件，提取自 XinAdmin。",
+    "name": "xinadmin/laravel-attr-route",
+    "description": "使用 PHP 8 注解（Attributes）注册 Laravel 路由与 Sanctum 验证的轻量级组件",
     "keywords": [
         "laravel",
         "route",
