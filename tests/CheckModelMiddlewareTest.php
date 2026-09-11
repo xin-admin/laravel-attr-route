@@ -1,15 +1,15 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
-use Xin\AnnoRoute\Exceptions\MissingModelException;
-use Xin\AnnoRoute\Middlewares\CheckModelMiddleware;
-use Xin\AnnoRoute\Tests\Fixtures\Models\AdminUser;
-use Xin\AnnoRoute\Tests\Fixtures\Models\SystemUser;
+use Xin\AttrRoute\Exceptions\MissingModelException;
+use Xin\AttrRoute\Middlewares\CheckModelMiddleware;
+use Xin\AttrRoute\Tests\Fixtures\Models\AdminUser;
+use Xin\AttrRoute\Tests\Fixtures\Models\SystemUser;
 
 class CheckModelMiddlewareTest extends TestCase
 {

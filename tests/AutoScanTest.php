@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 /**
  * 验证 ServiceProvider 启动时自动扫描 scan_paths 并注册注解路由。

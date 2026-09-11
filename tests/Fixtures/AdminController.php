@@ -1,10 +1,10 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests\Fixtures;
+namespace Xin\AttrRoute\Tests\Fixtures;
 
-use Xin\AnnoRoute\Attribute\GetRoute;
-use Xin\AnnoRoute\Attribute\PostRoute;
-use Xin\AnnoRoute\Attribute\RequestAttribute;
+use Xin\AttrRoute\Attribute\GetRoute;
+use Xin\AttrRoute\Attribute\PostRoute;
+use Xin\AttrRoute\Attribute\RequestAttribute;
 
 /**
  * 带控制器级中间件、无权限前缀的控制器，

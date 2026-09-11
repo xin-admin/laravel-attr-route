@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests\Fixtures;
+namespace Xin\AttrRoute\Tests\Fixtures;
 
 use Attribute;
 

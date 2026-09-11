@@ -1,9 +1,9 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Auth\Access\AuthorizationException;
-use Xin\AnnoRoute\Exceptions\MissingModelException;
+use Xin\AttrRoute\Exceptions\MissingModelException;
 
 class MissingModelExceptionTest extends TestCase
 {

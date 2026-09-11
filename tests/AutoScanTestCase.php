@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 /**
  * 开启自动扫描并指向 Fixtures 目录的测试基类，

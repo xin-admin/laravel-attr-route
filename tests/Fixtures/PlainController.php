@@ -1,8 +1,8 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests\Fixtures;
+namespace Xin\AttrRoute\Tests\Fixtures;
 
-use Xin\AnnoRoute\Attribute\GetRoute;
+use Xin\AttrRoute\Attribute\GetRoute;
 
 /**
  * 类上有注解但不是 RequestAttribute 的控制器，不应注册任何路由。

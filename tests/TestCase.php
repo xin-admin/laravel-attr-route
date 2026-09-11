@@ -1,11 +1,11 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route as RouteFacade;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Xin\AnnoRoute\AttrRouteServiceProvider;
+use Xin\AttrRoute\AttrRouteServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

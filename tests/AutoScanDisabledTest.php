@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Support\Facades\Route as RouteFacade;
 

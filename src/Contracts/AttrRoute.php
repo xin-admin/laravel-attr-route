@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Contracts;
+namespace Xin\AttrRoute\Contracts;
 
 interface AttrRoute
 {

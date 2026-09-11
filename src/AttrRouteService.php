@@ -1,11 +1,11 @@
 <?php
 
-namespace Xin\AnnoRoute;
+namespace Xin\AttrRoute;
 
 use Illuminate\Support\Facades\Log;
 use ReflectionException;
 use Symfony\Component\Finder\Finder;
-use Xin\AnnoRoute\Contracts\AttrRoute;
+use Xin\AttrRoute\Contracts\AttrRoute;
 
 class AttrRouteService implements AttrRoute
 {

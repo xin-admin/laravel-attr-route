@@ -1,11 +1,11 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Support\Facades\Route as RouteFacade;
-use Xin\AnnoRoute\AttrRouteService;
-use Xin\AnnoRoute\Contracts\AttrRoute;
-use Xin\AnnoRoute\Facades\AttrRoute as AttrRouteFacade;
+use Xin\AttrRoute\AttrRouteService;
+use Xin\AttrRoute\Contracts\AttrRoute;
+use Xin\AttrRoute\Facades\AttrRoute as AttrRouteFacade;
 
 class AttrRouteServiceProviderTest extends TestCase
 {

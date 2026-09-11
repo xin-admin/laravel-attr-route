@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 /**
  * 关闭自动扫描但配置了扫描路径的测试基类，

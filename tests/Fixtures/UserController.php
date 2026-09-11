@@ -1,14 +1,14 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests\Fixtures;
+namespace Xin\AttrRoute\Tests\Fixtures;
 
-use Xin\AnnoRoute\Attribute\AnyRoute;
-use Xin\AnnoRoute\Attribute\DeleteRoute;
-use Xin\AnnoRoute\Attribute\GetRoute;
-use Xin\AnnoRoute\Attribute\PatchRoute;
-use Xin\AnnoRoute\Attribute\PostRoute;
-use Xin\AnnoRoute\Attribute\PutRoute;
-use Xin\AnnoRoute\Attribute\RequestAttribute;
+use Xin\AttrRoute\Attribute\AnyRoute;
+use Xin\AttrRoute\Attribute\DeleteRoute;
+use Xin\AttrRoute\Attribute\GetRoute;
+use Xin\AttrRoute\Attribute\PatchRoute;
+use Xin\AttrRoute\Attribute\PostRoute;
+use Xin\AttrRoute\Attribute\PutRoute;
+use Xin\AttrRoute\Attribute\RequestAttribute;
 
 #[RequestAttribute(routePrefix: '/users', abilitiesPrefix: 'user')]
 class UserController

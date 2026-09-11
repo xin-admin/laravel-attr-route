@@ -1,13 +1,13 @@
 <?php
 
-namespace Xin\AnnoRoute\Middlewares;
+namespace Xin\AttrRoute\Middlewares;
 
 use Closure;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
-use Xin\AnnoRoute\Exceptions\MissingModelException;
+use Xin\AttrRoute\Exceptions\MissingModelException;
 
 class CheckModelMiddleware
 {

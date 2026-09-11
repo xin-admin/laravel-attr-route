@@ -9,9 +9,9 @@
 
 namespace App\Http\Controllers;
 
-use Xin\AnnoRoute\Attribute\GetRoute;
-use Xin\AnnoRoute\Attribute\PostRoute;
-use Xin\AnnoRoute\Attribute\RequestAttribute;
+use Xin\AttrRoute\Attribute\GetRoute;
+use Xin\AttrRoute\Attribute\PostRoute;
+use Xin\AttrRoute\Attribute\RequestAttribute;
 
 #[RequestAttribute(routePrefix: '/admin/user', abilitiesPrefix: 'admin')]
 class UserController

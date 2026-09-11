@@ -1,15 +1,15 @@
 <?php
 
-namespace Xin\AnnoRoute\Tests;
+namespace Xin\AttrRoute\Tests;
 
 use Illuminate\Support\Facades\Route as RouteFacade;
 use Laravel\Sanctum\Http\Middleware\CheckAbilities;
-use Xin\AnnoRoute\Middlewares\CheckModelMiddleware;
-use Xin\AnnoRoute\RouteRegisterService;
-use Xin\AnnoRoute\Tests\Fixtures\AdminController;
-use Xin\AnnoRoute\Tests\Fixtures\BareController;
-use Xin\AnnoRoute\Tests\Fixtures\PlainController;
-use Xin\AnnoRoute\Tests\Fixtures\UserController;
+use Xin\AttrRoute\Middlewares\CheckModelMiddleware;
+use Xin\AttrRoute\RouteRegisterService;
+use Xin\AttrRoute\Tests\Fixtures\AdminController;
+use Xin\AttrRoute\Tests\Fixtures\BareController;
+use Xin\AttrRoute\Tests\Fixtures\PlainController;
+use Xin\AttrRoute\Tests\Fixtures\UserController;
 
 class RouteRegisterServiceTest extends TestCase
 {

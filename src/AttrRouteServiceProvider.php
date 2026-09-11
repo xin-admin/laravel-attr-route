@@ -1,9 +1,9 @@
 <?php
 
-namespace Xin\AnnoRoute;
+namespace Xin\AttrRoute;
 
 use Illuminate\Support\ServiceProvider;
-use Xin\AnnoRoute\Contracts\AttrRoute;
+use Xin\AttrRoute\Contracts\AttrRoute;
 
 class AttrRouteServiceProvider extends ServiceProvider
 {

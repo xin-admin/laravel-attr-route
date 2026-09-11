@@ -33,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Xin\\AnnoRoute\\": "src/"
+            "Xin\\AttrRoute\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Xin\\AnnoRoute\\Tests\\": "tests/"
+            "Xin\\AttrRoute\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -47,7 +47,7 @@
                 "AttrRouteServiceProvider"
             ],
             "aliases": {
-                "AnnoRoute": "AttrRoute"
+                "AttrRoute": "AttrRoute"
             }
         }
     },

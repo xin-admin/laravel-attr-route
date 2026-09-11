@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Attribute;
+namespace Xin\AttrRoute\Attribute;
 
 use Attribute;
 use Illuminate\Http\JsonResponse;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\AnnoRoute\Exceptions;
+namespace Xin\AttrRoute\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Arr;
