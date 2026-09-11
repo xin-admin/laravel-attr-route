@@ -17,7 +17,7 @@ class RequestAttribute
         public string $routePrefix = '',
         public string $abilitiesPrefix = '',
         public string | array $middleware = '',
-        public ?string $authModel = 'default',
+        public ?string $authModel = '',
     )
     {
     }

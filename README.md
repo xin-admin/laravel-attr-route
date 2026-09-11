@@ -1,6 +1,6 @@
-# Xin AnnoRoute
+# Laravel Attribute Route
 
-使用 PHP 8 注解（Attributes）注册 Laravel 路由的轻量级组件
+使用 PHP 8 注解（Attributes）注册 Laravel 路由与 Sanctum 验证的轻量级组件
 
 在控制器上通过注解声明路由、中间件与权限，无需再手动维护路由文件：
 
@@ -13,7 +13,7 @@ use Xin\AnnoRoute\Attribute\GetRoute;
 use Xin\AnnoRoute\Attribute\PostRoute;
 use Xin\AnnoRoute\Attribute\RequestAttribute;
 
-#[RequestAttribute(routePrefix: '/admin/user', abilitiesPrefix: 'admin', authModel: 'admin')]
+#[RequestAttribute(routePrefix: '/admin/user', abilitiesPrefix: 'admin')]
 class UserController
 {
     // GET /admin/user/list，需要登录态与 admin.user.list 权限
