@@ -30,7 +30,7 @@ class AttrRouteServiceProviderTest extends TestCase
 
     public function test_no_routes_registered_when_scan_paths_empty(): void
     {
-        // 基础 TestCase 将 scan_paths 置空，启动时不应注册任何路由
+        // The base TestCase empties scan_paths, so no routes are registered on boot
         $this->assertCount(0, RouteFacade::getRoutes()->getRoutes());
     }
 }

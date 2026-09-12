@@ -82,7 +82,7 @@ class AttributeTest extends TestCase
                 ->newInstance()
                 ->flags;
 
-            $this->assertSame(Attribute::TARGET_METHOD, $flags, "{$class} 应声明为方法级注解");
+            $this->assertSame(Attribute::TARGET_METHOD, $flags, "{$class} should be declared as a method-level attribute");
         }
     }
 

@@ -8,10 +8,10 @@ use Attribute;
 class RequestAttribute
 {
     /**
-     * @param string $routePrefix 路由前缀
-     * @param string $abilitiesPrefix 权限前缀
-     * @param string | array $middleware 控制器中间件
-     * @param string | null $authModel 约束用户模型
+     * @param string $routePrefix Route prefix
+     * @param string $abilitiesPrefix Abilities prefix
+     * @param string | array $middleware Controller middleware
+     * @param string | null $authModel User model guard alias
      */
     public function __construct(
         public string $routePrefix = '',

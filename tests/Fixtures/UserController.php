@@ -11,7 +11,7 @@ use Xin\AttrRoute\Attribute\PutRoute;
 use Xin\AttrRoute\Attribute\RequestAttribute;
 
 /**
- * 带权限前缀的控制器，覆盖全部六种 HTTP 方法注解。
+ * A controller with an abilities prefix, covering all six HTTP method attributes.
  */
 #[RequestAttribute(routePrefix: '/users', abilitiesPrefix: 'user')]
 class UserController

@@ -5,7 +5,7 @@ namespace Xin\AttrRoute\Tests;
 use Illuminate\Support\Facades\Route as RouteFacade;
 
 /**
- * 验证 auto_scan = false 时即使配置了 scan_paths 也不会注册路由。
+ * Verify no routes are registered when auto_scan = false, even with scan_paths configured.
  */
 class AutoScanDisabledTest extends AutoScanDisabledTestCase
 {

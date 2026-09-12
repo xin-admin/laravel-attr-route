@@ -7,8 +7,8 @@ use Xin\AttrRoute\Attribute\PostRoute;
 use Xin\AttrRoute\Attribute\RequestAttribute;
 
 /**
- * 带控制器级中间件、无权限前缀、显式指定 authModel 的控制器，
- * 用于验证中间件合并、无前缀的 abilities 拼接与 authModel 透传。
+ * A controller with controller-level middleware, no abilities prefix, and an explicit authModel,
+ * used to verify middleware merging, prefix-less ability building, and authModel passthrough.
  */
 #[RequestAttribute(routePrefix: '/admin', middleware: ['web'], authModel: 'admin')]
 class AdminController

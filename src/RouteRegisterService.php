@@ -19,7 +19,7 @@ use Xin\AttrRoute\Middlewares\CheckModelMiddleware;
 class RouteRegisterService
 {
     /**
-     * 默认的注解 => HTTP 方法映射表
+     * Default attribute => HTTP method mapping table
      *
      * @var array<class-string<BaseAttribute>, string>
      */
@@ -33,7 +33,7 @@ class RouteRegisterService
     ];
 
     /**
-     * register 注册路由
+     * Register routes
      *
      * @param class-string $className
      * @throws ReflectionException
@@ -58,7 +58,7 @@ class RouteRegisterService
             return;
         }
         $routeInstance = $requestMapping->newInstance();
-        // 默认参数
+        // Default parameters
         $routePrefix = $routeInstance->routePrefix ?? '';
         $authModel = $routeInstance->authModel ?? 'default';
         $abilitiesPrefix = $routeInstance->abilitiesPrefix ?? '';
@@ -67,7 +67,7 @@ class RouteRegisterService
         $mappings = self::$mappings;
 
         foreach ($classRef->getMethods() as $method) {
-            // 方法注解
+            // Method attributes
             $attributes = $method->getAttributes();
             if (empty($attributes)) {
                 continue;
@@ -94,16 +94,16 @@ class RouteRegisterService
     }
 
     /**
-     * 注册路由
+     * Register a route
      *
-     * @param BaseAttribute $instance 路由注解实例
-     * @param string $method 控制器方法名
-     * @param class-string $className 控制器类名
-     * @param string $httpMethod HTTP 方法（小写）
-     * @param string $authModel 用户模型
-     * @param array $middleware 控制器级中间件
-     * @param string $routePrefix 路由前缀
-     * @param string $abilitiesPrefix 权限前缀
+     * @param BaseAttribute $instance Route attribute instance
+     * @param string $method Controller method name
+     * @param class-string $className Controller class name
+     * @param string $httpMethod HTTP method (lowercase)
+     * @param string $authModel User model guard alias
+     * @param array $middleware Controller-level middleware
+     * @param string $routePrefix Route prefix
+     * @param string $abilitiesPrefix Abilities prefix
      * @return void
      */
     private static function registerRoute(
@@ -131,11 +131,11 @@ class RouteRegisterService
     }
 
     /**
-     * 根据 authorize 注解参数构建鉴权中间件
+     * Build authorization middleware from the authorize attribute parameter
      *
-     * @param string|bool $authorize 权限字段
-     * @param string|null $authModel 用户模型
-     * @param string $abilitiesPrefix 权限前缀
+     * @param string|bool $authorize Ability name
+     * @param string|null $authModel User model guard alias
+     * @param string $abilitiesPrefix Abilities prefix
      * @return array
      */
     public static function buildAuthMiddleware(string|bool $authorize, ?string $authModel, string $abilitiesPrefix): array
@@ -163,7 +163,7 @@ class RouteRegisterService
     }
 
     /**
-     * 规整中间件参数为数组
+     * Normalize the middleware parameter into an array
      *
      * @param string|array|null $middleware
      * @return string[]

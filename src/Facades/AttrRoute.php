@@ -5,7 +5,7 @@ namespace Xin\AttrRoute\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void register(string|array $path) 从指定路径扫描控制器并注册注解路由
+ * @method static void register(string|array $path) Scan controllers from the given paths and register attribute routes
  *
  * @see \Xin\AttrRoute\AttrRouteService
  */

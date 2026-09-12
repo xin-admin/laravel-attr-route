@@ -14,8 +14,8 @@ use Xin\AttrRoute\Tests\Fixtures\UserController;
 class RouteRegisterServiceTest extends TestCase
 {
     /**
-     * UserController 未指定 authModel，RequestAttribute 默认为 ''，
-     * 空 authModel 会回退为 'default'，因此以 ':default' 参数注册。
+     * UserController does not specify authModel, so RequestAttribute defaults to '',
+     * and an empty authModel falls back to 'default' — registered with the ':default' parameter.
      */
     private const MODEL_GUARD = CheckModelMiddleware::class . ':default';
 
@@ -27,7 +27,7 @@ class RouteRegisterServiceTest extends TestCase
 
         $this->assertNotNull($route);
         $this->assertSame(UserController::class . '@index', $route->getAction('uses'));
-        // authorize: false → 不追加任何鉴权中间件
+        // authorize: false → no auth middleware is appended
         $this->assertSame([], $route->middleware());
     }
 
@@ -69,7 +69,7 @@ class RouteRegisterServiceTest extends TestCase
     {
         RouteRegisterService::register(AdminController::class);
 
-        // AdminController 指定了 authModel: 'admin'
+        // AdminController specifies authModel: 'admin'
         $middleware = $this->findRoute('admin/dashboard', 'GET')->middleware();
 
         $this->assertSame(
@@ -99,7 +99,7 @@ class RouteRegisterServiceTest extends TestCase
     {
         RouteRegisterService::register(UserController::class);
 
-        // authorize 默认 true → 无 abilities；方法中间件字符串被规整为数组
+        // authorize defaults to true → no abilities; the method middleware string is normalized to an array
         $middleware = $this->findRoute('users/{id}', 'PUT')->middleware();
 
         $this->assertSame(['auth:sanctum', self::MODEL_GUARD, 'throttle:60'], $middleware);
@@ -127,7 +127,7 @@ class RouteRegisterServiceTest extends TestCase
     {
         RouteRegisterService::register(UserController::class);
 
-        // 8 个带路由注解的方法；notARoute 与 CustomAttribute 不产生额外路由
+        // 8 methods carry route attributes; notARoute and CustomAttribute produce no extra routes
         $this->assertCount(8, RouteFacade::getRoutes()->getRoutes());
     }
 
@@ -167,28 +167,28 @@ class RouteRegisterServiceTest extends TestCase
         $guard = CheckModelMiddleware::class;
         $abilities = CheckAbilities::class;
 
-        // authorize = false → 无鉴权中间件
+        // authorize = false → no auth middleware
         $this->assertSame([], RouteRegisterService::buildAuthMiddleware(false, 'admin', ''));
 
-        // authorize = true → 仅登录校验，无 abilities
+        // authorize = true → authentication only, no abilities
         $this->assertSame(
             ['auth:sanctum', $guard . ':admin'],
             RouteRegisterService::buildAuthMiddleware(true, 'admin', '')
         );
 
-        // 字符串 authorize + 权限前缀 → 拼接为 prefix.authorize
+        // String authorize + abilities prefix → concatenated as prefix.authorize
         $this->assertSame(
             ['auth:sanctum', $guard . ':admin', $abilities . ':user.create'],
             RouteRegisterService::buildAuthMiddleware('create', 'admin', 'user')
         );
 
-        // 字符串 authorize、空前缀 → 直接使用 authorize
+        // String authorize with an empty prefix → use authorize as-is
         $this->assertSame(
             ['auth:sanctum', $guard . ':admin', $abilities . ':create'],
             RouteRegisterService::buildAuthMiddleware('create', 'admin', '')
         );
 
-        // authModel 为 null / 空串 → 回退为 ':default' 参数（运行时解析 models.default 配置）
+        // authModel null / empty → falls back to ':default' (resolves the models.default config at runtime)
         $this->assertSame(
             ['auth:sanctum', $guard . ':default'],
             RouteRegisterService::buildAuthMiddleware(true, null, '')

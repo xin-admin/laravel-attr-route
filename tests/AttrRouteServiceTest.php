@@ -13,11 +13,11 @@ class AttrRouteServiceTest extends TestCase
     {
         (new AttrRouteService())->register(__DIR__ . '/Fixtures');
 
-        // UserController 与 AdminController 的路由都被注册
+        // Routes from both UserController and AdminController are registered
         $this->assertNotNull($this->findRoute('users/list', 'GET'));
         $this->assertNotNull($this->findRoute('admin/dashboard', 'GET'));
 
-        // 没有 RequestAttribute 的控制器不会被注册
+        // Controllers without RequestAttribute are not registered
         $this->assertNull($this->findRoute('plain', 'GET'));
     }
 
@@ -42,7 +42,7 @@ class AttrRouteServiceTest extends TestCase
     {
         $dir = sys_get_temp_dir() . '/attr-route-' . uniqid();
         mkdir($dir);
-        // 非 *Controller.php 文件不应被扫描
+        // Files not matching *Controller.php must not be scanned
         file_put_contents(
             $dir . '/Helper.php',
             "<?php\nnamespace AttrRouteTemp;\nclass Helper {}\n"
@@ -62,7 +62,7 @@ class AttrRouteServiceTest extends TestCase
     {
         $dir = sys_get_temp_dir() . '/attr-route-' . uniqid();
         mkdir($dir);
-        // 无命名空间的文件无法映射到可加载的类，静默跳过
+        // A file without a namespace cannot be mapped to a loadable class and is silently skipped
         file_put_contents(
             $dir . '/NoNamespaceController.php',
             "<?php\nclass NoNamespaceController {}\n"

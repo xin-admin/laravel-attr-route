@@ -16,13 +16,13 @@ abstract class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app): void
     {
-        // 默认清空扫描路径，避免 Provider 启动时自动扫描影响各用例；
-        // 需要验证自动扫描的用例使用 AutoScanTestCase
+        // Clear scan paths by default so the provider does not auto-scan during boot;
+        // use AutoScanTestCase for cases that need auto scanning
         $app['config']->set('attr-route.scan_paths', []);
     }
 
     /**
-     * 在已注册的路由中按 URI 与 HTTP 方法查找路由
+     * Find a registered route by URI and HTTP method
      */
     protected function findRoute(string $uri, string $method = 'GET'): ?Route
     {
@@ -38,7 +38,7 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * 已注册路由的 URI 列表（便于断言）
+     * List of registered route URIs (for assertions)
      *
      * @return string[]
      */

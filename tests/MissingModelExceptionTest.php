@@ -26,6 +26,6 @@ class MissingModelExceptionTest extends TestCase
 
     public function test_custom_message(): void
     {
-        $this->assertSame('自定义错误', (new MissingModelException('User', '自定义错误'))->getMessage());
+        $this->assertSame('Custom error message', (new MissingModelException('User', 'Custom error message'))->getMessage());
     }
 }

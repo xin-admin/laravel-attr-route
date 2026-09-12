@@ -22,7 +22,7 @@ class CheckModelMiddlewareTest extends TestCase
 
     public function test_passes_through_when_alias_has_no_configured_model(): void
     {
-        // 包默认配置 models.default = ''，未配置模型时不校验直接放行
+        // The package default models.default = '' — with no configured model the request passes through
         $called = false;
         $response = (new CheckModelMiddleware())->handle(
             $this->makeRequest(null),
@@ -54,7 +54,7 @@ class CheckModelMiddlewareTest extends TestCase
 
     public function test_null_alias_falls_back_to_default(): void
     {
-        // null 别名回退 'default'，默认未配置模型 → 放行
+        // A null alias falls back to 'default', which has no configured model → passes through
         $called = false;
         (new CheckModelMiddleware())->handle(
             $this->makeRequest(null),
@@ -118,7 +118,7 @@ class CheckModelMiddlewareTest extends TestCase
                 fn () => new Response(),
                 'admin'
             );
-            $this->fail('令牌模型不匹配时应抛出 MissingModelException');
+            $this->fail('A MissingModelException should be thrown when the token model mismatches');
         } catch (MissingModelException $e) {
             $this->assertSame('Invalid model provided.', $e->getMessage());
             $this->assertSame((string) $tokenable, $e->model());

@@ -3,8 +3,8 @@
 namespace Xin\AttrRoute\Tests;
 
 /**
- * 关闭自动扫描但配置了扫描路径的测试基类，
- * 用于验证 auto_scan = false 时不会注册任何路由。
+ * Base test case with auto scan disabled but scan paths configured,
+ * used to verify no routes are registered when auto_scan = false.
  */
 abstract class AutoScanDisabledTestCase extends TestCase
 {

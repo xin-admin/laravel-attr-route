@@ -8,7 +8,7 @@ use Xin\AttrRoute\Contracts\AttrRoute;
 class AttrRouteServiceProvider extends ServiceProvider
 {
     /**
-     * 注册服务
+     * Register services
      */
     public function register(): void
     {
@@ -18,12 +18,12 @@ class AttrRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * 启动服务
+     * Bootstrap services
      */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-            // 发布配置文件
+            // Publish the configuration file
             $this->publishes([
                 __DIR__ . '/../config/attr-route.php' => config_path('attr-route.php'),
             ], 'attr-route');
@@ -33,7 +33,7 @@ class AttrRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * 自动扫描并注册注解路由
+     * Auto scan and register attribute routes
      */
     protected function registerAttributeRoutes(): void
     {
@@ -41,7 +41,7 @@ class AttrRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        // 路由已缓存时无需重复扫描，缓存中已包含注解路由
+        // No need to scan again when routes are cached; the cache already contains attribute routes
         if ($this->app->routesAreCached()) {
             return;
         }

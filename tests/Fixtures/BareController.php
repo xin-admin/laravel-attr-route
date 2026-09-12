@@ -3,7 +3,7 @@
 namespace Xin\AttrRoute\Tests\Fixtures;
 
 /**
- * 完全没有任何注解的控制器，不应注册任何路由。
+ * A controller without any attributes; no routes should be registered.
  */
 class BareController
 {

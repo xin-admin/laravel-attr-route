@@ -11,9 +11,9 @@ class AttrRouteService implements AttrRoute
 {
 
     /**
-     * 从指定路径扫描控制器并注册注解路由
+     * Scan controllers from the given paths and register attribute routes
      *
-     * @param string|array $path 控制器目录（可传多个）
+     * @param string|array $path Controller directories (multiple allowed)
      * @return void
      */
     public function register(string|array $path): void
@@ -26,7 +26,7 @@ class AttrRouteService implements AttrRoute
     }
 
     /**
-     * 从指定路径注册路由
+     * Register routes from the given path
      */
     private function registerFromPath(string $path): void
     {
@@ -48,22 +48,22 @@ class AttrRouteService implements AttrRoute
                 try {
                     RouteRegisterService::register($className);
                 } catch (ReflectionException $e) {
-                    Log::warning("AttrRoute: 注册路由失败 [{$className}]: " . $e->getMessage());
+                    Log::warning("AttrRoute: failed to register routes [{$className}]: " . $e->getMessage());
                 }
             }
         }
     }
 
     /**
-     * 从文件路径和所在目录解析类名
+     * Resolve the class name from the file path and its directory
      */
     private function getClassNameFromFile(string $filePath, string $fileDir): ?string
     {
-        // 读取文件内容获取命名空间
+        // Read the file content to get the namespace
         $content = file_get_contents($filePath);
 
         if (!preg_match('/namespace\s+([^;]+);/', $content, $namespaceMatch)) {
-            // 没有命名空间，尝试通过路径猜测
+            // No namespace, try guessing from the path
             return $this->guessClassNameFromPath($filePath, $fileDir);
         }
 
@@ -74,23 +74,23 @@ class AttrRouteService implements AttrRoute
     }
 
     /**
-     * 当文件没有命名空间时，通过路径猜测类名
+     * Guess the class name from the path when the file has no namespace
      */
     private function guessClassNameFromPath(string $filePath, string $fileDir): ?string
     {
-        // 获取相对于项目根目录的路径
+        // Get the path relative to the project root
         $basePath = base_path();
         $relativePath = str_replace($basePath, '', $fileDir);
 
-        // 将路径转换为命名空间
+        // Convert the path into a namespace
         $namespace = str_replace('/', '\\', ltrim($relativePath, '/'));
 
-        // 移除开头的反斜杠并转换路径分隔符
+        // Remove leading backslashes and normalize path separators
         $namespace = trim($namespace, '\\');
 
         $className = basename($filePath, '.php');
 
-        // 如果命名空间为空，直接返回类名
+        // If the namespace is empty, return the class name directly
         if (empty($namespace)) {
             return $className;
         }

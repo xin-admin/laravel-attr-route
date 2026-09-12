@@ -7,14 +7,14 @@ use Attribute;
 #[Attribute(Attribute::TARGET_METHOD)]
 class PatchRoute extends BaseAttribute
 {
-    /** @var string 请求方法 */
+    /** @var string HTTP request method */
     public string $httpMethod = 'PATCH';
 
     /**
-     * @param string $route 路由地址
-     * @param string|bool $authorize 权限字段
-     * @param string|array $middleware 中间件
-     * @param array $where 路由参数约束
+     * @param string $route Route path
+     * @param string|bool $authorize Ability name, or false to skip authorization
+     * @param string|array $middleware Middleware
+     * @param array $where Route parameter constraints
      */
     public function __construct(
         public string         $route = '',

@@ -5,7 +5,7 @@ namespace Xin\AttrRoute\Tests\Fixtures;
 use Xin\AttrRoute\Attribute\GetRoute;
 
 /**
- * 类上有注解但不是 RequestAttribute 的控制器，不应注册任何路由。
+ * A controller whose class attribute is not RequestAttribute; no routes should be registered.
  */
 #[CustomAttribute]
 class PlainController

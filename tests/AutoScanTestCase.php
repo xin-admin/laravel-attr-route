@@ -3,8 +3,8 @@
 namespace Xin\AttrRoute\Tests;
 
 /**
- * 开启自动扫描并指向 Fixtures 目录的测试基类，
- * 用于验证 ServiceProvider 启动时自动注册注解路由。
+ * Base test case that enables auto scanning pointed at the Fixtures directory,
+ * used to verify the ServiceProvider registers attribute routes on boot.
  */
 abstract class AutoScanTestCase extends TestCase
 {

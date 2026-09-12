@@ -3,11 +3,12 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | 自动扫描
+    | Auto Scan
     |--------------------------------------------------------------------------
     |
-    | 开启后，ServiceProvider 会在应用启动时自动扫描 scan_paths 中带有
-    | 路由注解的控制器并注册路由。也可以关闭后手动调用：
+    | When enabled, the ServiceProvider scans scan_paths on application boot
+    | and registers controllers carrying route attributes. You can also
+    | disable it and call manually:
     | app(AttrRoute::class)->register($path);
     |
     */
@@ -15,11 +16,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 扫描路径
+    | Scan Paths
     |--------------------------------------------------------------------------
     |
-    | 自动扫描与 route:helper 命令共用的控制器扫描目录，
-    | 会递归查找其中的 *Controller.php 文件。
+    | Controller directories scanned for attribute routes. The scanner
+    | recursively looks for *Controller.php files.
     |
     */
     'scan_paths' => [
@@ -28,11 +29,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 用户模型
+    | User Models
     |--------------------------------------------------------------------------
     |
-    | 用户模型配置，在多用户表的模式下，用于验证具体令牌属于那个模型
-    | default 为空时不验证令牌所属的模型
+    | User model map keyed by alias. In multi-user-table mode it verifies
+    | which model a token belongs to. When `default` is empty, the token's
+    | model is not verified.
     |
     */
     'models' => [
