@@ -1,8 +1,10 @@
 # Laravel Attribute Route
 
-使用 PHP 8 注解（Attributes）注册 Laravel 路由与 Sanctum 验证的轻量级组件（支持多用户模型）
+[中文文档](README.zh-CN.md)
 
-在控制器上通过注解声明路由、中间件与权限，无需再手动维护路由文件：
+A lightweight package that registers Laravel routes and Sanctum authentication using PHP 8 Attributes (supports multiple user models).
+
+Declare routes, middleware and permissions directly on controllers — no more maintaining route files by hand:
 
 ```php
 <?php
@@ -16,14 +18,14 @@ use Xin\AttrRoute\Attribute\RequestAttribute;
 #[RequestAttribute(routePrefix: '/admin/user', abilitiesPrefix: 'admin')]
 class UserController
 {
-    // GET /admin/user/list，需要登录态与 admin.user.list 权限
+    // GET /admin/user/list, requires authentication and the admin.user.list ability
     #[GetRoute(route: '/list', authorize: 'user.list')]
     public function list()
     {
         // ...
     }
 
-    // POST /admin/user/create，跳过鉴权，加限流中间件
+    // POST /admin/user/create, skips authorization, with a throttle middleware
     #[PostRoute(route: '/create', authorize: false, middleware: 'throttle:10')]
     public function create()
     {
@@ -32,27 +34,27 @@ class UserController
 }
 ```
 
-## 环境要求
+## Requirements
 
-- PHP >= 8.2（Laravel 13 需要 PHP >= 8.3）
+- PHP >= 8.2 (Laravel 13 requires PHP >= 8.3)
 - Laravel 11 / 12 / 13
 
-## 安装
+## Installation
 
 ```bash
 composer require xinadmin/laravel-attr-route
 ```
 
-发布配置文件：
+Publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=attr-route
 ```
 
-## 快速开始
+## Quick Start
 
-默认情况下，ServiceProvider 会自动扫描 `app/Http/Controllers` 并注册所有注解路由。
-扫描目录可在 `config/attr-route.php` 的 `scan_paths` 中修改：
+By default, the ServiceProvider automatically scans `app/Http/Controllers` and registers all attribute routes.
+You can change the scan directories via `scan_paths` in `config/attr-route.php`:
 
 ```php
 'scan_paths' => [
@@ -60,54 +62,75 @@ php artisan vendor:publish --tag=attr-route
 ],
 ```
 
-也可以关闭自动扫描（`'auto_scan' => false`），在你自己的 ServiceProvider 中手动注册：
+You can also disable auto scanning (`'auto_scan' => false`) and register manually in your own ServiceProvider:
 
 ```php
-use Xin\AnnoRoute\Contracts\AttrRoute;
+use Xin\AttrRoute\Contracts\AttrRoute;
 
-public function boot(AttrRoute $annoRoute): void
+public function boot(AttrRoute $attrRoute): void
 {
-    $annoRoute->register(app_path('Http/Controllers'));
-    // 支持数组
-    $annoRoute->register([$pathA, $pathB]);
+    $attrRoute->register(app_path('Http/Controllers'));
+    // Arrays are supported
+    $attrRoute->register([$pathA, $pathB]);
 }
 ```
 
-## 注解说明
+When routes are cached (`php artisan route:cache`), scanning is skipped automatically — the cached routes already contain the attribute routes.
 
-### 类注解 `RequestAttribute`
+## Attributes
 
-标注在控制器类上，是所有路由注解生效的前提：
+### Class attribute `RequestAttribute`
 
-| 参数                | 类型              | 说明                             |
-|-------------------|-----------------|--------------------------------|
-| `routePrefix`     | `string`        | 路由前缀，如 `/admin/user`           |
-| `abilitiesPrefix` | `string`        | 权限【能力】前缀，与方法注解的 `authorize` 拼接 |
-| `middleware`      | `string\|array` | 控制器级中间件，作用于类下所有路由              |
-| `authModel`       | `?string`       | 用户模型守卫，验证 token 属于的模型          |
+Must be declared on the controller class — it is the prerequisite for all route attributes to take effect:
 
-### 方法注解
+| Parameter         | Type            | Description                                                       |
+|-------------------|-----------------|-------------------------------------------------------------------|
+| `routePrefix`     | `string`        | Route prefix, e.g. `/admin/user`                                  |
+| `abilitiesPrefix` | `string`        | Ability prefix, concatenated with the method attribute `authorize` |
+| `middleware`      | `string\|array` | Controller-level middleware, applied to all routes of the class   |
+| `authModel`       | `?string`       | User model guard alias, verifies which model the token belongs to |
 
-| 注解               | HTTP 方法 |
-|------------------|---------|
-| `#[GetRoute]`    | GET     |
-| `#[PostRoute]`   | POST    |
-| `#[PutRoute]`    | PUT     |
-| `#[PatchRoute]`  | PATCH   |
-| `#[DeleteRoute]` | DELETE  |
-| `#[AnyRoute]`    | 所有方法    |
+### Method attributes
 
-方法注解的公共参数：
+| Attribute        | HTTP Method |
+|------------------|-------------|
+| `#[GetRoute]`    | GET         |
+| `#[PostRoute]`   | POST        |
+| `#[PutRoute]`    | PUT         |
+| `#[PatchRoute]`  | PATCH       |
+| `#[DeleteRoute]` | DELETE      |
+| `#[AnyRoute]`    | All methods |
 
-| 参数           | 类型              | 默认值    | 说明                              |
-|--------------|-----------------|--------|---------------------------------|
-| `route`      | `string`        | `''`   | 路由地址，与 `routePrefix` 拼接         |
-| `authorize`  | `string\|bool`  | `true` | `false` 关闭鉴权；字符串时作为权限名与前缀拼接     |
-| `middleware` | `string\|array` | `''`   | 路由级中间件                          |
-| `where`      | `array`         | `[]`   | 路由参数正则约束，如 `['id' => '[0-9]+']` |
+Common parameters of method attributes:
 
+| Parameter    | Type            | Default | Description                                                       |
+|--------------|-----------------|---------|-------------------------------------------------------------------|
+| `route`      | `string`        | `''`    | Route path, concatenated with `routePrefix`                       |
+| `authorize`  | `string\|bool`  | `true`  | `false` disables authorization; a string is used as the ability name concatenated with the prefix |
+| `middleware` | `string\|array` | `''`    | Route-level middleware                                            |
+| `where`      | `array`         | `[]`    | Regex constraints for route parameters, e.g. `['id' => '[0-9]+']` |
 
-## 配置文件
+## Model Guard (Multi-User-Table Authentication)
+
+`authModel` is an **alias** that is resolved against `config('attr-route.models')`. For example:
+
+```php
+// config/attr-route.php
+'models' => [
+    'default' => App\Models\User::class,
+    'admin'   => App\Models\Admin::class,
+],
+```
+
+```php
+// Tokens issued to App\Models\Admin only
+#[RequestAttribute(routePrefix: '/admin', authModel: 'admin')]
+class AdminController { /* ... */ }
+```
+
+When `authModel` is omitted, the `default` alias is used. If the resolved model class is empty, the token's model is **not** verified and the request passes through directly.
+
+## Configuration File
 
 ```php
 <?php
@@ -116,11 +139,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 自动扫描
+    | Auto Scan
     |--------------------------------------------------------------------------
     |
-    | 开启后，ServiceProvider 会在应用启动时自动扫描 scan_paths 中带有
-    | 路由注解的控制器并注册路由。也可以关闭后手动调用：
+    | When enabled, the ServiceProvider scans scan_paths on application boot
+    | and registers controllers carrying route attributes. You can also
+    | disable it and call manually:
     | app(AttrRoute::class)->register($path);
     |
     */
@@ -128,11 +152,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 扫描路径
+    | Scan Paths
     |--------------------------------------------------------------------------
     |
-    | 自动扫描与 route:helper 命令共用的控制器扫描目录，
-    | 会递归查找其中的 *Controller.php 文件。
+    | Controller directories scanned for attribute routes. The scanner
+    | recursively looks for *Controller.php files.
     |
     */
     'scan_paths' => [
@@ -141,11 +165,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 用户模型
+    | User Models
     |--------------------------------------------------------------------------
     |
-    | 用户模型配置，在多用户表的模式下，用于验证具体令牌属于那个模型
-    | default 为空时不验证令牌所属的模型
+    | User model map keyed by alias. In multi-user-table mode it verifies
+    | which model a token belongs to. When `default` is empty, the token's
+    | model is not verified.
     |
     */
     'models' => [
