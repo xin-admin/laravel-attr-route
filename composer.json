@@ -7,14 +7,15 @@
         "routing",
         "attribute",
         "annotation",
-        "xinadmin"
+        "xinadmin",
+        "xin-admin"
     ],
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "XinAdmin",
-            "homepage": "https://github.com/xinadmin"
+            "homepage": "https://github.com/xin-admin"
         }
     ],
     "require": {

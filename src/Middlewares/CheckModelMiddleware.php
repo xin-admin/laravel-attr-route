@@ -16,10 +16,16 @@ class CheckModelMiddleware
      *
      * @param Closure(Request): (Response) $next
      */
-    public function handle(Request $request, Closure $next, ?string $modelClass): Response
+    public function handle(Request $request, Closure $next, ?string $modelClassAlias): Response
     {
+        if (empty($modelClassAlias)) {
+            $modelClassAlias = 'default';
+        }
+
+        $modelClass = config('attr-route.models.' . $modelClassAlias);
+
         if (empty($modelClass)) {
-            $modelClass = config('attr-route.models.default');
+            return $next($request);
         }
 
         $token = $request->user()?->currentAccessToken();

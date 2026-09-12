@@ -146,11 +146,10 @@ class RouteRegisterService
 
         $authMiddleware = ['auth:sanctum'];
 
-        $guardMiddleware = CheckModelMiddleware::class;
         if (! empty($authModel)) {
-            $authMiddleware[] = $guardMiddleware . ':' . $authModel;
+            $authMiddleware[] = CheckModelMiddleware::class . ':' . $authModel;
         } else {
-            $authMiddleware[] = $guardMiddleware;
+            $authMiddleware[] = CheckModelMiddleware::class . ':default';
         }
 
         $abilitiesMiddleware = CheckAbilities::class;
