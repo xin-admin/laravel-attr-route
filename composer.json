@@ -45,7 +45,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "AttrRouteServiceProvider"
+                "Xin\\AttrRoute\\AttrRouteServiceProvider"
             ],
             "aliases": {
                 "AttrRoute": "AttrRoute"
